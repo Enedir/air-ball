@@ -1,0 +1,72 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/player.css' %}">
+    <title>Estatísticas de jogadores</title>
+{% endblock %} 
+    
+{% block container %}      
+    <h2>Estatísticas de jogadores</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Posição</th>
+                <th>Time</th>
+                <th>Número</th>
+                <!-- <th><a class="tooltip">Altura<span class="tooltiptext">Altura</span></a></th>
+                <th><a class="tooltip">Peso<span class="tooltiptext">Peso</span></a></th> -->
+                <th>Temporada</th>
+                <!-- <th>Playoff</th> -->
+                <th><a class="tooltip" href="?order_by=ppg">PPG<span class="tooltiptext">Pontos por Jogo</span></a></th>
+                <th><a class="tooltip" href="?order_by=rpg">RPG<span class="tooltiptext">Rebotes por Jogo</span></a></th>
+                <th><a class="tooltip" href="?order_by=apg">APG<span class="tooltiptext">Assistências por Jogo</span></a></th>
+                <th><a class="tooltip"href="?order_by=bpg">BPG<span class="tooltiptext">Tocos por Jogo</span></a></th>
+                <th><a class="tooltip"href="?order_by=spg">SPG<span class="tooltiptext">Roubadas por Jogo</span></a></th>
+                <th><a class="tooltip"href="?order_by=tpg">TPG<span class="tooltiptext">Turn Overs por Jogo</span></a></th>
+                <th><a class="tooltip"href="?order_by=mpg">MPG<span class="tooltiptext">Minutos por Jogo</span></a></th>
+                <th><a class="tooltip"href="?order_by=ftp">FTP<span class="tooltiptext">Lances Livres Percentual</span></a></th>
+                <th><a class="tooltip"href="?order_by=fgp">FGP<span class="tooltiptext">Field Goals Percentual</span></a></th>
+                <th><a class="tooltip"href="?order_by=ttp">TTP<span class="tooltiptext">3pts Percentual</span></a></th>
+                <th><a class="tooltip"href="?order_by=ftm">FTM<span class="tooltiptext">Lances Livres convertidos</span></a></th>
+                <th><a class="tooltip"href="?order_by=fgm">FGM<span class="tooltiptext">Field Goals convertidos</span></a></th>
+                <th><a class="tooltip"href="?order_by=ttm">TTM<span class="tooltiptext">3pts convertidos</span></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for statistic in statistics %}
+            <tr>
+                <td><a href="{% url 'player' %}?jogador={{player.id_nba}}">{{statistic.player.name}}</a></td>
+                <td>{{statistic.player.position}}</td>
+                <td>{{statistic.player.team.name}}</td>
+                <td>{{statistic.player.number}}</td>
+                <!-- <td>{{statistic.player.height}}</td>
+                <td>{{statistic.player.weight}}</td> -->
+                <td>{{statistic.season.year}}</td>
+                
+                <!-- {% if statistic.playoff %}
+                    <td>Sim</td>
+                {% else %}
+                    <td>Não</td>
+                {% endif %} -->
+
+                <td>{{statistic.ppg}}</td>
+                <td>{{statistic.rpg}}</td>
+                <td>{{statistic.apg}}</td>
+                <td>{{statistic.bpg}}</td>
+                <td>{{statistic.spg}}</td>
+                <td>{{statistic.tpg}}</td>
+                <td>{{statistic.mpg}}</td>
+                <td>{{statistic.ftp}}</td>
+                <td>{{statistic.fgp}}</td>
+                <td>{{statistic.ttp}}</td>
+                <td>{{statistic.ftm}}</td>
+                <td>{{statistic.fgm}}</td>
+                <td>{{statistic.ttm}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %} 
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+<title>Quiz Airball</title>
+{% endblock %} 
+
+{% block container %} 
+
+<h2>Feed de  Noticas</h2>
+<BR>
+
+{% for news in news_list %}
+
+<div class="card card-body">
+    <h4 class="card-title"><a target="_blank" href="{{ news.url }}">{{news.title}}</a></h4>
+    <p class="card-text">{{news.description}}</p>
+</div>
+<br> 
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %}
+
+{% block header %}    
+    <title>Time</title>
+{% endblock %} 
+
+{% block container %}
+<h2>{{team.name}}</h2>
+
+<p class="lead">{{team.description}}</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Divisão</th>
+            <th>Conferência</th>
+            <th>Data Fundação</th>
+            <th>Dono</th>
+            <th>Gerente Geral</th>
+            <th>Cidade</th>
+            <th>Arena</th>
+            <th>Técnico</th>
+        </tr>
+    </thead>
+    <tbody>
+        <td>{{team.division.name_br}}</td>
+        <td>{{team.division.conference.name_br}}</td>
+        <td>{{team.fundation_date}}</td>
+        <td>{{team.owner}}</td>
+        <td>{{team.general_manager}}</td>
+        <td>{{team.city}}</td>
+        <td>{{team.arena}}</td>
+        <td>{{team.coach}}</td>
+    </tbody>
+</table>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Temporada</th>
+            <th>Playoff</th>
+            <th>Vitórias</th>
+            <th>Derrotas</th>
+            <th>PPG</th>
+            <th>RPG</th>
+            <th>APG</th>
+            <th>BPG</th>
+            <th>SPG</th>
+            <th>TPG</th>
+            <th>FTP</th>
+            <th>FGP</th>
+            <th>TTP</th>
+            <th>Op. PPG</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for statistic in statistics %}
+        <tr>
+            <td>{{statistic.season.year}}</td>
+            
+            {% if statistic.playoff %}
+                <td>Sim</td>
+            {% else %}
+                <td>Não</td>
+            {% endif %}
+
+            <td>{{statistic.wins}}</td>
+            <td>{{statistic.loses}}</td>
+            <td>{{statistic.ppg}}</td>
+            <td>{{statistic.rpg}}</td>
+            <td>{{statistic.apg}}</td>
+            <td>{{statistic.bpg}}</td>
+            <td>{{statistic.spg}}</td>
+            <td>{{statistic.tpg}}</td>
+            <td>{{statistic.ftp}}</td>
+            <td>{{statistic.fgp}}</td>
+            <td>{{statistic.ttp}}</td>
+            <td>{{statistic.oppPts}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

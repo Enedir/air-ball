@@ -1,0 +1,60 @@
+{% extends 'airball/template-main.html' %}
+{% load staticfiles %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/player.css' %}">
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <title>Comparação estatística entre jogadores</title>
+{% endblock %} 
+    
+{% block container %}
+<form action="player_statistic_comparison" method="post"> {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-3" style="text-align: right;">
+            <label class="col-sm-2 col-form-label" style="margin-right: 70px;">Jogadores</label>
+        </div>
+        <div class="col-sm-3">
+            <select id="select1" class="form-control collectes-ville text-center" name="player_1">
+                {% for player in players.players %}
+                <option value="{{ player }}">{{ player.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <select id="select2" class="form-control collectes-ville text-center" name="player_2">
+                {% for player2 in players.players %}
+                <option value="{{ player2 }}">{{ player2.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <input   type="submit" class="btn btn-default btn-submit" value="Calcular">
+        </div>
+    </div>
+</form>
+    
+    <br>
+    
+    <div id="comparison">
+        <div class="row">
+            <div class="col-md-6">
+                <a id="player1-page" href=""><h3 id="player1-name" class="right-alignment"></h3><a>
+                <a id="player1-team-page" href=""><h6 id="player1-team" class="right-alignment"></h6><a>
+            </div>
+            <div class="col-md-6 left-alignment">
+                <a id="player2-page" href=""><h3 id="player2-name" class="left-alignment"></h3><a>
+                <a id="player2-team-page" href=""><h6 id="player2-team" class="left-alignment"></h6><a>
+            </div>
+        </div>
+        
+        <div id="container" style="width: 100%; margin: 0 auto"></div>
+    </div>
+
+    <script type="text/javascript">
+        statistics = {{ statistics_players|safe }};
+    </script>
+    
+    <script src="{% static 'js/player-comparison-chart.js' %}"></script>
+{% endblock %}

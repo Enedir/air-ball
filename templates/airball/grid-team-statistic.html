@@ -1,0 +1,62 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %} 
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/team.css' %}">
+<title>Estatísticas de Times</title>
+{% endblock %} 
+
+{% block container %}
+<h2>Estatísticas de Times</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th><a href="?order_by=team">Nome</a></th>
+            <th>Temporada</th>
+            <th>Playoff</th>
+            <th><a class="tooltip"  href="?order_by=wins">Vitórias</a></th>
+            <th><a class="tooltip" href="?order_by=loses">Derrotas</a></th>
+            <th><a class="tooltip" href="?order_by=ppg">PPG<span class="tooltiptext">Pontos por Jogo</span></a></th>
+            <th><a class="tooltip" href="?order_by=rpg">RPG<span class="tooltiptext">Rebotes por Jogo</span></a></th>
+            <th><a class="tooltip" href="?order_by=apg">APG<span class="tooltiptext">Assistências por Jogo</span></a></th>
+            <th><a class="tooltip"href="?order_by=bpg">BPG<span class="tooltiptext">Tocos por Jogo</span></a></th>
+            <th><a class="tooltip"href="?order_by=spg">SPG<span class="tooltiptext">Roubadas por Jogo</span></a></th>
+            <th><a class="tooltip"href="?order_by=tpg">TPG<span class="tooltiptext">Turn Overs por Jogo</span></a></th>
+            <th><a class="tooltip"href="?order_by=ftp">FTP<span class="tooltiptext">Lances Livres Percentual</span></a></th>
+            <th><a class="tooltip"href="?order_by=fgp">FGP<span class="tooltiptext">Field Goals Percentual</span></a></th>
+            <th><a class="tooltip"href="?order_by=ttp">TTP<span class="tooltiptext">3pts Percentual</span></a></th>
+            <!-- <th>Op. PPG</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for statistic in statistics %}
+        <tr>
+            <td><a href="{% url 'team' %}?time={{team.id_nba}}">{{statistic.team.name}}</a></td>
+            <td>{{statistic.season.year}}</td>
+            
+            {% if statistic.playoff %}
+                <td>Sim</td>
+            {% else %}
+                <td>Não</td>
+            {% endif %}
+
+            <td>{{statistic.wins}}</td>
+            <td>{{statistic.loses}}</td>
+            <td>{{statistic.ppg}}</td>
+            <td>{{statistic.rpg}}</td>
+            <td>{{statistic.apg}}</td>
+            <td>{{statistic.bpg}}</td>
+            <td>{{statistic.spg}}</td>
+            <td>{{statistic.tpg}}</td>
+            <td>{{statistic.ftp}}</td>
+            <td>{{statistic.fgp}}</td>
+            <td>{{statistic.ttp}}</td>
+            <!-- <td>{{statistic.oppPts}}</td> -->
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

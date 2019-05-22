@@ -1,0 +1,19 @@
+{% extends "airball/template-main.html" %}
+{% block header %}
+  <title>Cadastro de questão</title>
+{% endblock %}
+{% block container %}
+  <h1>
+    {% if not form.instance.pk %}
+      Criar questão
+    {% else %}
+      Atualizar questão
+    {% endif %}
+  </h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class='btn btn-primary' value="Salvar">
+
+  </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+.container{
+    margin-top: 7%;
+}
+
+.option {
+    width: 100%;
+}
+
+.next {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+#card {
+    padding: 10px;
+}

@@ -1,0 +1,57 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %}
+
+{% block header %}    
+    <link rel="stylesheet" href="{% static 'css/team.css' %}">
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Comparação estatística entre times</title>
+{% endblock %} 
+
+{% block container %}
+<form action="team_statistic_comparison" method="post"> {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-3" style="text-align: right;">
+            <label class="col-sm-2 col-form-label" style="margin-right: 20px;">Código</label>
+        </div>
+        <div class="col-sm-3">
+            <select id="select1" class="form-control collectes-ville text-center" name="team_1">
+                {% for team in teams.teams %}
+                <option value="{{ team }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <select id="select2" class="form-control collectes-ville text-center" name="team_2">
+                {% for team2 in teams.teams %}
+                <option value="{{ team2 }}">{{ team2.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <input   type="submit" class="btn btn-default btn-submit" value="Calcular">
+        </div>
+    </div>
+</form>
+
+    <br>
+
+    <div id="comparison">
+        <div class="row">
+            <div class="col-md-6">
+                <a id="team1-page" href=""><h3 id="team1-name" class="right-alignment"></h3><a>
+            </div>
+            <div class="col-md-6 left-alignment">
+                <a id="team2-page" href=""><h3 id="team2-name" class="left-alignment"></h3><a>
+            </div>
+        </div>
+        
+        <div id="container" style="width: 100%; margin: 0 auto"></div>
+    </div>
+
+    <script type="text/javascript">
+        statistics = {{ statistics_teams|safe }};
+    </script>
+
+    <script src="{% static 'js/team-comparison-chart.js' %}"></script>
+{% endblock %}

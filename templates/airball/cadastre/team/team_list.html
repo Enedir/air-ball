@@ -1,0 +1,39 @@
+{% extends "airball/template-main.html" %}
+{% load staticfiles %}
+{% block header %} 
+  <title>Lista de times</title>
+{% endblock %}
+{% block container %}
+  <h2>Times</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Divisão</th>
+        <th>Conferência</th>
+        <th>Ano de Fundação</th>
+        <th>Dono</th>
+        <th>Gerente Geral</th>
+        <th>Cidade</th>
+        <th>Arena</th>
+        <th>Técnico</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for team in teams %}
+        <tr class='clickable-row' onclick="document.location = 'atualizar/{{team.id}}';">
+          <td>{{team.name}}</td>
+          <td>{{team.division.name_br}}</td>
+          <td>{{team.division.conference.name_br}}</td>
+          <td>{{team.fundation_date}}</td>
+          <td>{{team.owner}}</td>
+          <td>{{team.general_manager}}</td>
+          <td>{{team.city}}</td>
+          <td>{{team.arena}}</td>
+          <td>{{team.coach}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

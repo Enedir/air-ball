@@ -1,0 +1,18 @@
+.container{
+    margin-top: 2%;
+    text-align: center;
+}
+
+.col-left{
+    left: 20%;
+}
+
+
+input{
+    width: 60%;
+}
+
+.btn-submit{
+    width: 60%;
+    
+}

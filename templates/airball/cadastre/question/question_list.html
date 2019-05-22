@@ -1,0 +1,66 @@
+{% extends "airball/template-main.html" %}
+{% load staticfiles %}
+{% block header %} 
+  <title>Lista de times</title>
+{% endblock %}
+{% block container %}
+  <h2>Times</h2>
+  <button type="button" class="btn btn-primary" style="margin-top:25px;margin-bottom:25px;" data-toggle="modal" data-target="#exampleModal" onclick="document.location = 'criar/'">Novo</button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Questão</th>
+        <th>Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for question in questions %}
+        <tr class='clickable-row' onclick="document.location = 'atualizar/{{question.id}}';">
+          <td>{{question.question}}</td>
+          <td width="100px">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="event.stopPropagation();deleteItem({{question.id}});">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Deseja excluir este registro?
+        </div>
+        <div class="modal-footer">
+          <a id="delete-item" href="http://google.com" class='btn btn-primary'>Sim</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var base_href = '{% url 'cadastre:delete_question' pk=0 %}';
+
+
+    function deleteItem(id) {      
+      var str = base_href;
+      str = str.substring(0,str.lastIndexOf("/"));
+      var link = document.getElementById("delete-item");
+      link.href = str  + "/" + id;
+
+      $('#myModal').modal('show');
+      
+    }
+    
+  </script>
+
+{% endblock %}

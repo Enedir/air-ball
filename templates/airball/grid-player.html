@@ -1,0 +1,44 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %} 
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/player.css' %}">
+<title>Jogadores</title>
+{% endblock %} 
+
+{% block container %}
+    <h2>Jogadores</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Posição</th>
+                <th>Time</th>
+                <th>Número</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Data Nascimento</th>
+                <th>Universidade</th>
+                <th>Draft</th>
+                <th>Experiência (anos)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td><a href="{% url 'player' %}?jogador={{player.id}}">{{player.name}}</a></td>
+                <td>{{player.position}}</td>
+                <td>{{player.team.name}}</td>
+                <td>{{player.number}}</td>
+                <td>{{player.height}}</td>
+                <td>{{player.weight}}</td>
+                <td>{{player.birth_date}}</td>
+                <td>{{player.college}}</td>
+                <td>{{player.draft}}</td>
+                <td>{{player.experience}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

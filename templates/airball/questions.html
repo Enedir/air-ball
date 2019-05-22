@@ -1,0 +1,35 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %} 
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/question.css' %}">
+    <title>Quiz Airball</title>
+{% endblock %} 
+
+{% block container %} 
+
+<h2>Quiz NBA</h2>
+<BR>
+
+<div class="card card-body" id="card">
+    <h4 id="title" class="card-title">Pergunta</h4>
+    <p id="question" class="card-text"></p>
+    <div class="btn-group" data-toggle="buttons" id="buttons">
+        <button id="option1" class="btn option btn-primary" onclick="verifyCorrectAnswer(1)">Opção 1</button>
+        <button id="option2" class="btn option btn-primary" onclick="verifyCorrectAnswer(2)">Opção 2</button>
+        <button id="option3" class="btn option btn-primary" onclick="verifyCorrectAnswer(3)">Opção 3</button>
+        <button id="option4" class="btn option btn-primary" onclick="verifyCorrectAnswer(4)">Opção 4</button>
+        <button id="option5" class="btn option btn-primary" onclick="verifyCorrectAnswer(5)">Opção 5</button>
+    </div>
+    <div class="col-md-12 next pull-right" id="next">
+        <button class="btn btn-secondary" onclick="nextQuestion()">Próxima</button>
+    </div>
+</div>
+<br> 
+
+<script type="text/javascript">
+    data_from_django = {{ questions|safe }};
+</script>
+
+<script src="{% static 'js/questions.js' %}"></script>
+{% endblock %}

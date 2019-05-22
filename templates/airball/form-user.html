@@ -1,0 +1,33 @@
+{% extends 'airball/template-main.html' %} {% load staticfiles %} {% block header %}
+<link rel="stylesheet" href="{% static 'css/form-user.css' %}">
+<title>Cadastro de Usuário</title>
+{% endblock %} {% block container %}
+<h2>Cadastro de Usuário</h2>
+<form class="form-horizontal" action="" method="POST"> {% csrf_token %} {% for field in form %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-left">
+                <label>{{ field.label }}</label>
+            </div>
+            <div class="col col-9">
+                {{ field }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <br>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <!-- <p>Texto Aleatorio</p> -->
+            </div>
+            <div class="col-9">
+                <button type="submit" class="btn btn-success btn-submit">Enviar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+{% endblock %}

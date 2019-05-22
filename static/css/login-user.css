@@ -1,0 +1,30 @@
+.container {
+    margin-top: 7%;
+}
+
+.label-space {
+    margin-left: 3%;
+}
+
+input{
+    width: 60%;
+}
+
+label{
+    margin-left: 5px;
+}
+
+.btn-primary{
+    margin-left: 24%;
+    width: 60%;
+
+}
+
+button{
+    margin-left: 24%;
+}
+
+a{
+    top: 7px;
+    text-align: center;
+}

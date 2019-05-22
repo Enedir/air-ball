@@ -1,0 +1,78 @@
+{% extends 'airball/template-main.html' %} 
+{% load staticfiles %} 
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/grid-schedule.css' %}">
+<title>Agenda</title>
+{% endblock %} 
+
+{% block container %}
+
+<div class="container text-xs-center">
+    <div class="row text-xs-center">
+        <div class="col-md-3">
+        </div>
+
+        <div class="col-md-7 plays-schedule">
+            <div class="well">
+                <div class="plays-schedule-title">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Agenda de Jogos da NBA</h5>
+                        </div>
+                    </div>
+                </div>
+                {% for schedule in schedules %}
+                <div class="plays-schedule-items">
+
+                    <div class="row plays-team">
+                        <div class="col-md-5">
+                                <h4>{{schedule.visitor_team}}</h4>
+                                <!-- <span class="ponts">{{schedule.visitor_points}}</span> -->
+                        </div>
+                        <div class="col-md-2">
+                            <h4>
+                                <span><h3>VS</h3></span>
+                                <span class="icon-ball"></span>
+                            </h4>
+                        </div>
+                        <div class="col-md-5">
+                                <h4>{{schedule.home_team}}</h4>
+                                <!-- <span class="ponts">{{schedule.home_points}}</span> -->
+                        </div>
+                    </div>
+                    <div class="row plays-info">
+                        <div class="col-md-12">
+                            <p>
+                                <span class="fo"></span>
+                                <span class="fa fa-calendar fa-lg colored-tex"></span>
+                                {{schedule.scheduled_date}}
+                                <span class="fa fa-clock-o fa-lg colored-tex"></span>
+                                <!-- (
+                                <small>15:30 local | 09:30 GMT</small>) -->
+                            </p>
+                            <p class="plays-dash"></p>
+                            <p>
+                                <!-- <small>Wembley Statium, UK</small> -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="plays-schedule-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-xs-left">NBA, 2017</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-xs-right">&COPY; airball.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
